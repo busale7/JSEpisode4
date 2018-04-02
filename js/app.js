@@ -22,11 +22,11 @@ Array.from(todoList.children).forEach(function(listItem) {
 
   // Add handlers for the edit button and checkbox
   // editButton.onclick = ...
-  checkBox.onchange = "Done"
-//connected the addTask() function as an onclick event handler for the addButton
+  //checkBox.onchange = completeTask;
+  //connected the addTask() function as an onclick event handler for the addButton
   addButton.onclick = addTask;
 
-  editButton.onclick=editTask;
+  //editButton.onclick=editTask;  i dont have to write it here because i dont have access to it .
 
 
 /*******************************************
@@ -53,10 +53,11 @@ function createNewTask(taskString) {
   // COMPLETE ME!
   // Add handlers for the edit button and checkbox
   // editButton.onclick = ...
-  	editButton.onclick = this.editButton;
+  	editButton.onclick = editTask;
+  	checkBox.onchange = completeTask;
 
   // checkBox.onchange = ...
-  checkBox.onchange =this.checkbox;
+  //checkBox.onchange =this.checkbox;
   // Append each element to the listItem " attacheing an item to a list of things checkbox,input,and edit button"
 	listItem.appendChild(checkBox);
 	listItem.appendChild(label);
@@ -90,6 +91,7 @@ function addTask() {
 	todoList.appendChild(listItem)
  // go back and check 
  	taskInput.value= "";
+ 	
 
 };
 
@@ -112,9 +114,9 @@ function editTask() {
 
   // node of the current button (`this`)
 	let listItem = this.parentNode;
-	let editItem=listItem.querySelector("input[type=text]");
+	let editItem=listItem.querySelector('input[type="text"]');
 	let label =listItem.querySelector("label");
-	let editButton = document.createElement("button"); // Button.edit
+	//let editButton = document.createElement("button"); // Button.edit
 
 
 	let containsClass =listItem.classList.contains("editMode");
@@ -122,18 +124,20 @@ function editTask() {
 	if (containsClass) {
 
 		//set the label text to the value of the input field
-		label.innerText =editItem.value;
+		label.innerHTML =editItem.value;
 		//Set the text in the button to 'Edit'
 		//editButton.onclick =document.getElementsByClassName('edit');
-		editButton.innerText ="Edit";
+		//editButton.innerText ="Edit";
+		this.innerHTML ="Edit";
 
 
 	} else {
 		//Set the value of the input field to be the same as the text of the label
-		editItem.value =label.innerText;
+		editItem.value =label.innerHTML;
 		//Set the text in the button to 'Save'
 		//editButton.onclick =document.getElementsByClassName('edit').value('Save');
-		editButton.innerText ="Save";
+		this.innerHTML ="Save";
+		console.log(this);
 
 
 
