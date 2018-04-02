@@ -19,7 +19,9 @@ Array.from(todoList.children).forEach(function(listItem) {
 });
 
 // Add a click handler to the addButton
+//connected the addTask() function as an onclick event handler for the addButton
 addButton.onclick = addTask;
+editButton.onclick=editTask;
 
 
 /*******************************************
@@ -46,8 +48,10 @@ function createNewTask(taskString) {
   // COMPLETE ME!
   // Add handlers for the edit button and checkbox
   // editButton.onclick = ...
+  	editButton.onclick = this.editButton;
+
   // checkBox.onchange = ...
-	editButton.onclick = this.editButton;
+  checkBox.onchange =this.checkbox;
   // Append each element to the listItem
 	listItem.appendChild(checkBox);
 	listItem.appendChild(label);
@@ -69,12 +73,14 @@ function createNewTask(taskString) {
 function addTask() {
 	let listItem = createNewTask(taskInput.value);
 	if (!taskInput ) {
-		//console.log('New Task');
+		//console.log('New Task'); 
+		//If the taskInput field was empty then the default text for the new task should be "New Task".
 	listItem = createNewTask(" New Task");
 		//taskInput = new taskInput;
 
-	};
 
+	};
+//Append the new task item as a child of the todoList element.
 todoList.appendChild(listItem)
  // go back and check 
  taskInput.value= "";
@@ -102,16 +108,26 @@ function editTask() {
 	let listItem = this.parentNode;
 	let editItem=listItem.querySelector("input[type=text]");
 	let label =listItem.querySelector("label");
+	let editButton = document.createElement("button"); // Button.edit
+
 
 	let containsClass =listItem.classList.contains("editMode");
+	
 	if (containsClass) {
 
 		//set the label text to the value of the input field
 		label.innerText =editItem.value;
+		//Set the text in the button to 'Edit'
+		//editButton.onclick =document.getElementsByClassName('edit');
 
 
 	} else {
+		//Set the value of the input field to be the same as the text of the label
 		editItem.value =label.innerText;
+		//Set the text in the button to 'Save'
+		//editButton.onclick =document.getElementsByClassName('edit').value('Save');
+
+
 	}
   // Complete me!
   	listItem.classList.toggle("editMode");
@@ -127,6 +143,7 @@ let removeListItem=listItemComplete.parentNode;
 	removeListItem.removeChild(listItemComplete);
 ***********************************/
 function completeTask() {
+
 
 
 };
