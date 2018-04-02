@@ -19,9 +19,14 @@ Array.from(todoList.children).forEach(function(listItem) {
 });
 
 // Add a click handler to the addButton
+
+  // Add handlers for the edit button and checkbox
+  // editButton.onclick = ...
+  checkBox.onchange = "Done"
 //connected the addTask() function as an onclick event handler for the addButton
-addButton.onclick = addTask;
-editButton.onclick=editTask;
+  addButton.onclick = addTask;
+
+  editButton.onclick=editTask;
 
 
 /*******************************************
@@ -39,8 +44,8 @@ function createNewTask(taskString) {
 	let editInput = document.createElement("input"); // Input (text)
 	let editButton = document.createElement("button"); // Button.edit
 
-	checkBox.type = "checkbox"; // Make this input a checkbox
-	editInput.type = "text"; // Make this input a text field
+	checkBox.type = "checkbox"; // Make this input a checkboxn html (type="checkbox")
+	editInput.type = "text"; // Make this input a text field in html (type="text")
 	editButton.innerText = "Edit"; // Change the text on the button
 	editButton.className = "edit"; // Give the button a .edit class
 	label.innerText = taskString; // Change the label text to the new taskString
@@ -52,7 +57,7 @@ function createNewTask(taskString) {
 
   // checkBox.onchange = ...
   checkBox.onchange =this.checkbox;
-  // Append each element to the listItem
+  // Append each element to the listItem " attacheing an item to a list of things checkbox,input,and edit button"
 	listItem.appendChild(checkBox);
 	listItem.appendChild(label);
 	listItem.appendChild(editInput);
@@ -72,6 +77,7 @@ function createNewTask(taskString) {
 
 function addTask() {
 	let listItem = createNewTask(taskInput.value);
+
 	if (!taskInput ) {
 		//console.log('New Task'); 
 		//If the taskInput field was empty then the default text for the new task should be "New Task".
@@ -81,9 +87,9 @@ function addTask() {
 
 	};
 //Append the new task item as a child of the todoList element.
-todoList.appendChild(listItem)
+	todoList.appendChild(listItem)
  // go back and check 
- taskInput.value= "";
+ 	taskInput.value= "";
 
 };
 
@@ -119,6 +125,7 @@ function editTask() {
 		label.innerText =editItem.value;
 		//Set the text in the button to 'Edit'
 		//editButton.onclick =document.getElementsByClassName('edit');
+		editButton.innerText ="Edit";
 
 
 	} else {
@@ -126,6 +133,8 @@ function editTask() {
 		editItem.value =label.innerText;
 		//Set the text in the button to 'Save'
 		//editButton.onclick =document.getElementsByClassName('edit').value('Save');
+		editButton.innerText ="Save";
+
 
 
 	}
@@ -143,6 +152,10 @@ let removeListItem=listItemComplete.parentNode;
 	removeListItem.removeChild(listItemComplete);
 ***********************************/
 function completeTask() {
+	let currentTask=this.parentNode;
+	console.log(currentTask);
+	//this.parentNode.remove(); another way
+	todoList.removeChild(currentTask);
 
 
 
